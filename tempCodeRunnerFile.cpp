@@ -1,0 +1,1 @@
+cout << "La matricola: " << cod << " corrisponde al nome: " << nome << endl;
