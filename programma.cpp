@@ -1,19 +1,3 @@
-// matricola.txt
-//  11485 Marius
-//  11486 Marco
-//  11487 Marcellus
-//  11488 Marcella
-//  stripendio.txt
-//  11485 5000
-//  11486 5005
-//  11487 3000
-//  11488 5000
-//  straordinari.txt
-//  11485 0
-//  11486 2
-//  11487 1
-//  11488 5
-
 #include <iostream>
 #include <fstream>
 #include <string>
