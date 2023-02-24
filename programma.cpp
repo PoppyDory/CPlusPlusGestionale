@@ -16,6 +16,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <string>
 
 using namespace std;
 
@@ -70,7 +71,7 @@ void findSalaryByCod(string cod)
 
 void findStraordinaryByCod(string cod)
 {
-    cout << "matricola: " << cod << " straordinario: " << cerca("straordinari.txt", cod) << endl;
+    cout << "La matricola " << cod << ", ha " << cerca("straordinari.txt", cod) << " ore di straordinario" << endl;
 }
 
 void findSalaryByName(string nome)
@@ -82,32 +83,33 @@ void findSalaryByName(string nome)
         string line;
         while (getline(fileAperto, line))
         {
-
+            int k = 0;
             for (int i = 6; i < line.length(); i++)
             {
-                if (line[i] != nome[i])
+                if (line[i] != nome[k])
                 {
                     break;
                 }
-                else if (i == 4) // ultimo carattere della matricola
+                else if (k == nome.length() - 1) // ultimo carattere del nome
                 {
                     for (int j = 0; j < 5; j++)
                     {
                         cod += line[j];
                     }
                 }
-                else
-                {
-                }
+
+                k++;
             }
         }
+
+        fileAperto.close();
     }
     else
     {
-        cout << "Impossibile aprire il file .txt" << endl;
+        cout << "1 Impossibile aprire il file .txt" << endl;
     }
 
-    int stipendioValore = stoi(cerca("stipendio", cod));
+    string stipendioValore = cerca("stipendio.txt", cod);
 
     cout << "Il nome: " << nome << " corrisponde alla matricola: " << cod << " e al stipendio: " << stipendioValore << endl;
 }
@@ -117,7 +119,7 @@ void findSalaryAndStraordinaryByCod(string cod)
 
     int salario = stoi(cerca("stipendio.txt", cod));
     int straodinario = stoi(cerca("straordinari.txt", cod));
-    int salarioTotale = salario + straodinario*35;
+    int salarioTotale = salario + straodinario * 35;
     cout << "matricola: " << cod << " stipendio totale: " << salarioTotale << endl;
 }
 
@@ -130,12 +132,14 @@ int main()
     {
         cout << "------------------------------------------------------" << endl;
         cout << "Inserisci il numero della funzionalita' che vuoi attivare" << endl;
+        cout << "------------------------------------------------------" << endl;
         cout << "1. Matricola -> Nome" << endl;
         cout << "2. Matricola -> Stipendio" << endl;
         cout << "3. Matricola -> Straordinari" << endl;
         cout << "4. Nome -> Stipendio" << endl;
         cout << "5. Matricola -> Stipendio + straordinari (35h)" << endl;
         cout << "0. EXIT" << endl;
+        cout << "------------------------------------------------------" << endl;
         int scelta;
         cin >> scelta;
         cout << "Inserisci quello che vuoi cercare \n";
